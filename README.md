@@ -2,8 +2,8 @@
 
 Create forms in React/React Native easily
 
-### `
-  import './App.scss';
+### ```
+import './App.scss';
 import {Form, TextInput, SubmitButton} from 'react-form-latest';
 
 function App(props) {
@@ -29,8 +29,7 @@ function App(props) {
 }
 
 export default App;
-
-`
+```
 
 ### OUTPUT
 
