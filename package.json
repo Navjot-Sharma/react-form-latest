@@ -46,5 +46,9 @@
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.18.5",
     "@babel/preset-env": "^7.18.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Navjot-Sharma/react-form-latest.git"
   }
 }
