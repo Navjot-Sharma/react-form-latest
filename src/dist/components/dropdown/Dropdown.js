@@ -57,7 +57,6 @@ class Dropdown extends _BaseInput.BaseInput {
           showList: false,
           touched: true
         });
-        console.log('handling blur');
       }
 
       this.validateErrors(true);
@@ -231,7 +230,6 @@ class Dropdown extends _BaseInput.BaseInput {
         className: "p-10 rfl-h-between",
         onMouseDown: ev => {
           ev.stopPropagation();
-          console.log('option clicked');
           this.onOptionSelect(option);
         }
       }, option.value, option.id == ((_this$state$currentVa5 = this.state.currentValue) === null || _this$state$currentVa5 === void 0 ? void 0 : _this$state$currentVa5.id) && /*#__PURE__*/_react.default.createElement(_fc.FcOk, null));

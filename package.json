@@ -23,7 +23,6 @@
     "node-sass": "^7.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-form-latest": "^0.1.6",
     "react-icons": "^4.4.0",
     "react-scripts": "5.0.1"
   },

@@ -6,6 +6,8 @@ import {Form, TextInput, Dropdown, SubmitButton} from 'react-form-latest';
 // import TextInput from './lib/components/text-input/TextInput';
 // import Dropdown from './lib/components/dropdown/Dropdown';
 // import SubmitButton from './lib/components/submit-button/SubmitButton';
+import Radio from './lib/components/radio/Radio';
+import { Toggle } from './lib/components/toggle/Toggle';
 
 function App() {
   return (
@@ -46,6 +48,21 @@ function App() {
         label='Password'
         type='password'
         required
+      />
+
+      {/* <Radio 
+        field='yes'
+        name='Yes'
+      /> */}
+
+      <Toggle
+        field='status'
+        label='Enable'
+      />
+      <Toggle
+        field='status'
+        label='Yes, I agree to privacy policy and terms of conditions.'
+        type='check'
       />
 
       <SubmitButton>Submit</SubmitButton>
