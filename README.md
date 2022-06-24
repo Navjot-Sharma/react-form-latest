@@ -29,15 +29,15 @@ function App(props) {
         />
 
         <Dropdown
-        options={[
-          {id: 'female', value: 'Female'},
-          {id: 'male', value: 'Male'},
-          {id: 'transgender', value: 'Transgender'},
-          {id: 'secret', value: "Don't wish to disclose"},
-        ]}
-        field='gender'
-        label='Gender'
-        required
+          options={[
+            {id: 'female', value: 'Female'},
+            {id: 'male', value: 'Male'},
+            {id: 'transgender', value: 'Transgender'},
+            {id: 'secret', value: "Don't wish to disclose"},
+          ]}
+          field='gender'
+          label='Gender'
+          required
         />
 
         <TextInput 
@@ -59,7 +59,12 @@ export default App;
 ### OUTPUT
 
 ```javascript
-{firstName: 'Navjot', lastName: 'Sharma'}
+{
+  name: 'Navjot Sharma', 
+  age: 25,
+  gender: 'Male',
+  password: 'abcdefgh'
+}
 ```
 ### Inputs Supported
 
