@@ -1,10 +1,12 @@
 import './App.scss';
 import {Form, TextInput, SubmitButton} from 'react-form-latest';
-
-function App(props) {
+// import { Form, TextInput, SubmitButton  } from "./dist/index";
+function App() {
   return (
    <>
-    <Form>
+    <Form
+      onValue={value => console.log(value)}
+    >
       <TextInput 
         field='firstName'
         label='First Name'

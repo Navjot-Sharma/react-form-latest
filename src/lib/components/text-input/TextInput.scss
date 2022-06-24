@@ -1,0 +1,142 @@
+@import '../../assets/index.scss';
+
+.input-container {
+  position: relative;
+  font-size: 1rem;
+  label {
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    text-transform: capitalize;
+    pointer-events: none;
+    position: absolute;
+    top: -15px;
+    left: 0.5rem;
+    transform: translateY(50%);
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 0 0.3rem;
+
+    &.required-label {
+      top: -20px;
+    }
+  }
+  input {
+    border-radius: 5px;
+    color: #1c1b29;
+    font-size: 12px;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #00000045;
+    height: 40px;
+    outline:none;
+
+    &:active {
+      border: 1px solid #000;
+    }
+    &:focus {
+      + label {
+        font-weight: bold;
+        transition: all 0.5s;
+      }
+    }
+    &:focus-visible {
+      border: 1px solid #000;
+    }
+
+    // &.fixed-height {
+    //   @media (min-width: 1400px) {
+    //     height: 60px;
+    //   }
+    // }
+  }
+
+  .input-search {
+    position: absolute;
+    right: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+  }
+
+  .apply-icon {
+    color: #fff;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+  }
+  .cross-icon {
+    color: #fff;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+  }
+}
+
+.text-container {
+  position: relative;
+  font-size: 1rem;
+  label {
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    text-transform: capitalize;
+    pointer-events: none;
+    position: absolute;
+    top: -17%;
+    // top: -15%;
+    left: 0.5rem;
+    transform: translateY(50%);
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 0 0.3rem;
+  }
+  textarea {
+    border-radius: 5px;
+    color: #1c1b29;
+    font-size: 12px;
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #00000045;
+    height: 100px;
+    outline:none;
+
+    &:active {
+    }
+    &:focus {
+      + label {
+        font-weight: bold;
+        transition: all 0.5s;
+      }
+    }
+  }
+}
+.input-eye {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  font-size: 24px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.error {
+  font-size: 0.75rem;
+  font-weight: bold;
+  position: absolute;
+  right: 5%;
+  // top: 90%;
+  bottom: -6px;
+  background-color: #fff;
+  max-width: fit-content;
+  width: 90%;
+  padding: 0 0.3rem;
+  z-index: 10;
+}

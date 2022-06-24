@@ -1,8 +1,8 @@
-import * as classnames from "classnames";
+import classNames from "classnames";
 import { debounce } from 'lodash';
 import React from "react";
 import { VscChevronRight, VscClose, VscEye, VscEyeClosed, VscLoading } from "react-icons/vsc";
-import { copy, empty } from "../services/Helper";
+import { copy, empty } from "../../services/Helper";
 import "./TextInput.scss";
 import { BaseInput } from "../base-input/BaseInput";
 
@@ -81,7 +81,6 @@ class TextInput extends BaseInput {
     const value = this.state.input?.value ?? this.state.editor?.value;
 
     if (this.state.touched || forceCheck) {
-      console.log(value, this.props.max, value < this.props.max);
       if (this.props.required && !value) {
         errors.push(fieldName + " is required");
       } else if (
@@ -201,7 +200,7 @@ class TextInput extends BaseInput {
           {this.props.label}
         </label>
         <textarea
-          className={classnames(this.props.inputClass, {
+          className={classNames(this.props.inputClass, {
             "error-border": this.state.errors.length > 0,
           })}
           placeholder={this.props.placeholder}
@@ -217,17 +216,17 @@ class TextInput extends BaseInput {
     }
 
     return (
-      <div className={classnames("input-container", {
+      <div className={classNames("input-container", {
         "disabled": this.props.disabled
       })}>
-        {this.props.label && <label htmlFor={this.props.id} className={classnames({
+        {this.props.label && <label htmlFor={this.props.id} className={classNames({
           'required-label': this.props.required
         })}>
           {this.props.required && <sup className="app-primary">*</sup>}
           {this.props.label}
         </label>}
         <input
-          className={classnames(this.props.inputClass, {
+          className={classNames(this.props.inputClass, {
             "error-border": this.state.errors.length > 0,
             "disabled": this.props.disabled,
             'fixed-height': !this.props.autoHeight

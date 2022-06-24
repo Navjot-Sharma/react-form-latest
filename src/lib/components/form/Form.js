@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { mapKeysToObject } from '../services/Helper';
+import { mapKeysToObject } from '../../services/Helper';
 
 
 // pass onValue prop to get value by clicking on appsubmitbutton
-class Form extends Component {
+export default class Form extends Component {
 
   inputRefs = {};
   currentRefCount = 0;
@@ -133,5 +133,3 @@ class Form extends Component {
     </>;
   }
 }
-
-export default Form;

@@ -5,11 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-require("core-js/modules/web.dom-collections.iterator.js");
-
 var _react = _interopRequireWildcard(require("react"));
 
-var _Helper = require("../services/Helper");
+var _Helper = require("../../services/Helper");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -135,5 +133,4 @@ class Form extends _react.Component {
 
 }
 
-var _default = Form;
-exports.default = _default;
+exports.default = Form;

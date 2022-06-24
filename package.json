@@ -1,13 +1,22 @@
 {
   "name": "react-form-latest",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "description": "Form libary which supports custom inputs and highly customizable",
   "author": "Navjot Sharma",
-  "keywords": ["react", "form", "advanced", "latest", "react-native"],
+  "keywords": [
+    "react",
+    "form",
+    "advanced",
+    "latest",
+    "react-native"
+  ],
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "files": [ "dist", "README.md" ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "classnames": "^2.3.1",
@@ -15,6 +24,7 @@
     "node-sass": "^7.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-form-latest": "^0.1.5",
     "react-icons": "^4.4.0",
     "react-scripts": "5.0.1"
   },
