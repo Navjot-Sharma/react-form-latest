@@ -25,11 +25,11 @@
     border-radius: 5px;
     color: #1c1b29;
     font-size: 12px;
-    width: 100%;
+    width: -webkit-fill-available;
     padding: 10px;
     font-size: 1rem;
     border: 1px solid #00000045;
-    height: 40px;
+    height: 30px;
     outline:none;
 
     &:active {
@@ -100,7 +100,7 @@
     border-radius: 5px;
     color: #1c1b29;
     font-size: 12px;
-    width: 100%;
+    width: -webkit-fill-available;
     height: 100px;
     padding: 10px;
     font-size: 1rem;

@@ -115,14 +115,14 @@ class TextInput extends BaseInput {
         errors.push(
           fieldName + ` must be less than ${this.props.max}`
         );
-      } else if (this.props.number && isNaN(value)) {
+      } else if (this.props.type === 'numeric' && isNaN(value)) {
         errors.push(
           fieldName + ` must be a numeric`
         );
-      } else if (this.props.integer && (isNaN(value) || (value + '').includes('.'))) {
+      } else if (this.props.type === 'integer' && (isNaN(value) || (value + '').includes('.'))) {
         if (isNaN(value)) {
           errors.push(
-            fieldName + ` must be numeric`
+            fieldName + ` must be integer`
           );
         } else {
           errors.push(
@@ -191,6 +191,16 @@ class TextInput extends BaseInput {
     }
   }
 
+  getInputType = () => {
+    switch (this.props.type) {
+      case 'password':
+        return this.state.type;
+
+      default: 
+        return 'text';
+    }
+  };
+
   getElement = () => {
     if (this.state.type == "textarea") {
       return (
@@ -216,7 +226,7 @@ class TextInput extends BaseInput {
     }
 
     return (
-      <div className={classNames("input-container", {
+      <div className={classNames("input-container my-15", {
         "disabled": this.props.disabled
       })}>
         {this.props.label && <label htmlFor={this.props.id} className={classNames({
@@ -233,7 +243,7 @@ class TextInput extends BaseInput {
           })}
           placeholder={this.props.placeholder}
           ref={this.setInputRef}
-          type={this.state.type}
+          type={this.getInputType()}
           onFocus={() => this.onFocusInput()}
           onBlur={() => this.onBlurInput()}
           onChange={() => this.onInputChange()}

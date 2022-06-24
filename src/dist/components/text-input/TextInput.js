@@ -76,11 +76,11 @@ class TextInput extends _BaseInput.BaseInput {
           errors.push(fieldName + " must not be less than ".concat(_this.props.min));
         } else if (_this.props.max && !(0, _Helper.empty)(value) && +value > _this.props.max) {
           errors.push(fieldName + " must be less than ".concat(_this.props.max));
-        } else if (_this.props.number && isNaN(value)) {
+        } else if (_this.props.type === 'numeric' && isNaN(value)) {
           errors.push(fieldName + " must be a numeric");
-        } else if (_this.props.integer && (isNaN(value) || (value + '').includes('.'))) {
+        } else if (_this.props.type === 'integer' && (isNaN(value) || (value + '').includes('.'))) {
           if (isNaN(value)) {
-            errors.push(fieldName + " must be numeric");
+            errors.push(fieldName + " must be integer");
           } else {
             errors.push(fieldName + " must not contains fractional values");
           }
@@ -166,6 +166,16 @@ class TextInput extends _BaseInput.BaseInput {
       }
     });
 
+    _defineProperty(this, "getInputType", () => {
+      switch (this.props.type) {
+        case 'password':
+          return this.state.type;
+
+        default:
+          return 'text';
+      }
+    });
+
     _defineProperty(this, "getElement", () => {
       if (this.state.type == "textarea") {
         return /*#__PURE__*/_react.default.createElement("div", {
@@ -190,7 +200,7 @@ class TextInput extends _BaseInput.BaseInput {
       }
 
       return /*#__PURE__*/_react.default.createElement("div", {
-        className: (0, _classnames.default)("input-container", {
+        className: (0, _classnames.default)("input-container my-15", {
           "disabled": this.props.disabled
         })
       }, this.props.label && /*#__PURE__*/_react.default.createElement("label", {
@@ -208,7 +218,7 @@ class TextInput extends _BaseInput.BaseInput {
         }),
         placeholder: this.props.placeholder,
         ref: this.setInputRef,
-        type: this.state.type,
+        type: this.getInputType(),
         onFocus: () => this.onFocusInput(),
         onBlur: () => this.onBlurInput(),
         onChange: () => this.onInputChange(),
