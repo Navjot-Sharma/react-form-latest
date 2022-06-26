@@ -3,17 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Toggle = void 0;
+exports.default = void 0;
 
 var _classnames = _interopRequireDefault(require("classnames"));
-
-var _lodash = require("lodash");
 
 var _react = _interopRequireDefault(require("react"));
 
 var _Helper = require("../../services/Helper");
 
 var _BaseInput = require("../base-input/BaseInput");
+
+var _lodash = require("lodash");
 
 require("./Toggle.scss");
 
@@ -23,7 +23,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 class Toggle extends _BaseInput.BaseInput {
   constructor(props) {
-    var _this, _props$type, _props$id, _this$props$debounce;
+    var _this, _props$type, _props$id;
 
     super(props);
     _this = this;
@@ -43,8 +43,17 @@ class Toggle extends _BaseInput.BaseInput {
 
     _defineProperty(this, "validateErrors", function () {
       let forceCheck = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      let selected = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _this.state.selected;
+      let checked = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _this.state.checked;
       let errors = [];
+
+      if (_this.props.required && !checked) {
+        errors.push(_this.fieldName + " is required");
+      }
+
+      _this.setState({
+        errors
+      });
+
       return errors;
     });
 
@@ -57,38 +66,39 @@ class Toggle extends _BaseInput.BaseInput {
       overflow: this.props.overflow,
       type: (_props$type = props.type) !== null && _props$type !== void 0 ? _props$type : 'toggle',
       // toggle || check
-      id: (_props$id = props.id) !== null && _props$id !== void 0 ? _props$id : 'rfl-toggle-' + (0, _lodash.random)(99, 9999999)
+      id: (_props$id = props.id) !== null && _props$id !== void 0 ? _props$id : 'rfl-toggle-' + (0, _lodash.random)(99, 9999999),
+      errors: []
     };
-    this.onToggle = (0, _lodash.throttle)(e => {
-      this.handleChange(e);
-    }, (_this$props$debounce = this.props.debounce) !== null && _this$props$debounce !== void 0 ? _this$props$debounce : 10); // if (this.props.debounce) {
-    // }
-  }
+  } // componentDidUpdate(props) {
+  //   if (props.checked !== this.props.checked) {
+  //     // console.log(props, this.props);
+  //     this.setState({checked: this.props.checked});
+  //   }
+  // }
 
-  componentDidUpdate(props) {
-    if (props.checked !== this.props.checked) {
-      // console.log(props, this.props);
-      this.setState({
-        checked: this.props.checked
-      });
-    }
-  }
 
   render() {
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !this.props.noForm && /*#__PURE__*/_react.default.createElement("div", {
       title: this.props.label,
       className: (0, _classnames.default)("my-15 cp", this.props.className, {
         'neumorphism-toggle': this.state.type === 'toggle',
-        'nfl-check': this.state.type === 'check'
+        'nfl-check': this.state.type === 'check',
+        'disabled': this.props.disabled,
+        'nfl-error': this.state.errors.length && !this.state.checked // 'checked': this.state.checked
+
       }),
       onClick: e => {
         e.persist();
-        this.onToggle(e);
+        this.handleChange(e);
       }
     }, /*#__PURE__*/_react.default.createElement("input", {
       type: "checkbox",
       id: this.state.id,
-      checked: this.state.checked,
+      className: (0, _classnames.default)({
+        'checked': this.state.checked
+      }),
+      checked: this.props.checked,
+      disabled: this.props.disabled,
       onChange: () => null
     }), /*#__PURE__*/_react.default.createElement("label", {
       htmlFor: this.state.id,
@@ -97,9 +107,9 @@ class Toggle extends _BaseInput.BaseInput {
       className: "switch"
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "dot"
-    })), !this.state.overflow && /*#__PURE__*/_react.default.createElement("span", null, this.props.label), this.state.overflow && /*#__PURE__*/_react.default.createElement("span", null, (0, _Helper.overflowElipsis)(this.props.label, this.state.overflow, 'left')))));
+    })), !this.state.overflow && this.props.label && /*#__PURE__*/_react.default.createElement("span", null, this.props.label), this.state.overflow && this.props.label && /*#__PURE__*/_react.default.createElement("span", null, (0, _Helper.overflowElipsis)(this.props.label, this.state.overflow, 'left')))));
   }
 
 }
 
-exports.Toggle = Toggle;
+exports.default = Toggle;

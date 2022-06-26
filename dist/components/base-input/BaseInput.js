@@ -18,8 +18,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * validateErrors & getValue
  */
 class BaseInput extends _react.Component {
-  constructor() {
-    super(...arguments);
+  constructor(props) {
+    var _ref, _this$props$name;
+
+    super(props);
+
+    _defineProperty(this, "fieldName", '');
 
     _defineProperty(this, "validateErrors", function () {
       let forceCheck = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
@@ -31,6 +35,8 @@ class BaseInput extends _react.Component {
     _defineProperty(this, "getValue", () => {
       return [this.props.field, this.state.value];
     });
+
+    this.fieldName = (_ref = (_this$props$name = this.props.name) !== null && _this$props$name !== void 0 ? _this$props$name : this.props.label) !== null && _ref !== void 0 ? _ref : "Field";
   }
 
 }

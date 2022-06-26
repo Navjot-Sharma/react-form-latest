@@ -15,8 +15,8 @@
       background: #fff;
       // background: rgb(249, 249, 249);
       border-radius: 9px;
-      padding: 16px 0 16px 20px;
-      min-width: 208px;
+      // padding: 16px 0 16px 20px;
+      // min-width: 208px;
       // display: block;
       cursor: pointer;
       position: relative;
@@ -110,7 +110,7 @@
         transition: opacity 0.4s, transform 0.4s;
       }
     }
-    &:not(:checked) {
+    &:not(.checked) {
       & + label {
         pointer-events: none;
         & + span {
@@ -119,7 +119,7 @@
         }
       }
     }
-    &:checked {
+    &.checked {
       & + label {
         --offset: 18px;
         --text: #404660;
@@ -135,7 +135,7 @@
 // @link https://moderncss.dev/pure-css-custom-checkbox-style/
 
 :root {
-  --form-control-color: rebeccapurple;
+  --form-control-color: #4f97ff;
   --form-control-disabled: #959495;
 }
 .nfl-check {
@@ -164,6 +164,16 @@
     cursor: pointer;
     display: grid;
   }
+
+  &.nfl-error {
+    input[type="checkbox"] {
+      border: 2px solid #e42346;
+      background: #f075750d;
+    }
+  
+  }
+
+  
 
   input[type="checkbox"]::before {
     content: "";

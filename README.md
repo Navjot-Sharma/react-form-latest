@@ -1,55 +1,90 @@
 # React Form Latest
 
-Create forms in React easily
+Form libary which supports custom inputs and highly customizable
 
 ```javascript
 import './App.scss';
-import {Form, TextInput, Dropdown, SubmitButton} from 'react-form-latest';
+import {
+  Form, 
+  TextInput, 
+  Dropdown, 
+  Toggle, 
+  Radio, 
+  SubmitButton 
+} from 'react-form-latest';
 
 function App(props) {
   return (
     <>
-      <Form
-        className='p-20'
-        onValue={value => console.log(value)}
-      >
-        <TextInput 
-          field='name'
-          label='Name'
-          minLength={3}
-          maxLength={50}
-          required
-        />
-        <TextInput 
-          field='age'
-          label='Age'
-          type='integer'
-          min={0}
-          max={150}
-        />
+    <Form
+      className='p-20'
+      onValue={value => console.log(value)}
+    >
+      <TextInput 
+        field='name'
+        label='Name'
+        minLength={3}
+        maxLength={50}
+        required
+      />
+      <TextInput 
+        field='age'
+        label='Age'
+        type='integer'
+        min={0}
+        max={150}
+      />
 
-        <Dropdown
-          options={[
-            {id: 'female', value: 'Female'},
-            {id: 'male', value: 'Male'},
-            {id: 'transgender', value: 'Transgender'},
-            {id: 'secret', value: "Don't wish to disclose"},
-          ]}
-          field='gender'
-          label='Gender'
-          required
-        />
+      <Dropdown
+       options={[
+        {id: 'female', value: 'Female'},
+        {id: 'male', value: 'Male'},
+        {id: 'transgender', value: 'Transgender'},
+        {id: 'secret', value: "Don't wish to disclose"},
+       ]}
+       field='gender'
+       label='Gender'
+       required
+      />
 
-        <TextInput 
-          field='password'
-          label='Password'
-          type='password'
-          required
-        />
+      <TextInput 
+        field='password'
+        label='Password'
+        type='password'
+        required
+      />
 
-        <SubmitButton>Submit</SubmitButton>
-      </Form>
-    </>
+      <div className='d-flex aic'>
+        <p>Marital Status: </p>
+        <div className='d-flex aic'>
+          <Radio 
+            field='maritalStatus'
+            name='MaritalStatus'
+            buttons={[
+              {label: 'Married', id: 'married'},
+              {label: 'Unmarried', id: 'unmarried'},
+              {label: 'Other', id: 'other'},
+            ]}
+            className='mx-10'
+            required
+          />
+        </div>
+      </div>
+
+      <Toggle
+        field='status'
+        label='Enable'
+      />
+      <Toggle
+        field='agree'
+        label='Yes, I agree to privacy policy and terms of conditions.'
+        type='check'
+        required
+      />
+
+      <SubmitButton>Submit</SubmitButton>
+    </Form>
+   </>
   );
 }
 
@@ -60,10 +95,13 @@ export default App;
 
 ```javascript
 {
-  name: 'Navjot Sharma', 
-  age: 25,
-  gender: 'Male',
-  password: 'abcdefgh'
+  age: "25"
+  agree: true
+  gender: "male"
+  maritalStatus: "unmarried"
+  name: "Navjot Sharma"
+  password: "abcdefgh",
+  status: false
 }
 ```
 ### Inputs Supported
@@ -71,11 +109,11 @@ export default App;
 Inputs:
   ✔ TextInput
   ✔ Dropdown
-  ☐ TextEditor
-  ☐ Radio
-  ☐ Toggle
+  ✔ Radio
+  ✔ Toggle
   ☐ Stars
-  ☐ Tags
   ☐ Chips
+  ☐ Tags
   ☐ File
+  ☐ TextEditor
   ☐ Datepicker

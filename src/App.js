@@ -1,13 +1,20 @@
 import './App.scss';
-import {Form, TextInput, Dropdown, SubmitButton} from 'react-form-latest';
-// import { Form, TextInput, Dropdown, SubmitButton  } from "./dist/index";
+// import {Form, TextInput, Dropdown, SubmitButton} from 'react-form-latest';
+import { 
+  Form, 
+  TextInput, 
+  Dropdown, 
+  Toggle, 
+  Radio, 
+  SubmitButton  
+} from "./dist/index";
 
 // import Form from './lib/components/form/Form';
 // import TextInput from './lib/components/text-input/TextInput';
 // import Dropdown from './lib/components/dropdown/Dropdown';
 // import SubmitButton from './lib/components/submit-button/SubmitButton';
-import Radio from './lib/components/radio/Radio';
-import { Toggle } from './lib/components/toggle/Toggle';
+// import Radio from './lib/components/radio/Radio';
+// import Toggle from './lib/components/toggle/Toggle';
 
 function App() {
   return (
@@ -50,19 +57,33 @@ function App() {
         required
       />
 
-      {/* <Radio 
-        field='yes'
-        name='Yes'
-      /> */}
+      <div className='d-flex aic'>
+        <p>Marital Status: </p>
+        <div className='d-flex aic'>
+          <Radio 
+            field='maritalStatus'
+            name='MaritalStatus'
+            buttons={[
+              {label: 'Married', id: 'married'},
+              {label: 'Unmarried', id: 'unmarried'},
+              {label: 'Other', id: 'other'},
+            ]}
+            className='mx-10'
+            // value='unmarried'
+            required
+          />
+        </div>
+      </div>
 
       <Toggle
         field='status'
         label='Enable'
       />
       <Toggle
-        field='status'
+        field='agree'
         label='Yes, I agree to privacy policy and terms of conditions.'
         type='check'
+        required
       />
 
       <SubmitButton>Submit</SubmitButton>

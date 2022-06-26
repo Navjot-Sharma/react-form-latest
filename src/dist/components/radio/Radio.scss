@@ -4,6 +4,12 @@
     height: 30px;
     display: flex;
     align-items: center;
+
+    &.nfl-error {
+      &__radio-btn {
+        border: .1rem solid #e42346 !important;
+      }
+    }
   }
   
   &__radio-input {
@@ -24,20 +30,32 @@
     height: 1.3rem;
     width: 1.3rem;
     border-radius: 50%;
-    border: .1rem solid #0AF;
+    border: .1rem solid #4f97ff;
     position: absolute;
     top: 50%;
     left: 0;
     transform: translateY(-50%);
+
+    &.nfl-error {
+      border: .1rem solid #e42346 !important;
+    }
   }
-  
+
+  &__radio-group {
+    &.nfl-error {
+      & .__radio-btn {
+        border: .1rem solid #e42346 !important;
+      }
+    }
+  }
+ 
   &__radio-btn::after {
     content: "";
     display: block;
     height: 0.9rem;
     width: 0.9rem;
     border-radius: 50%;
-    background-color: #0AF;
+    background-color: #4f97ff;
     position: absolute;
     top: 50%;
     left: 50%;
