@@ -32,12 +32,12 @@ class BaseInput extends _react.Component {
     this.inputComponentWillUnmount = this.componentWillUnmount;
 
     this.componentDidMount = () => {
-      this.context.setRefOnCustomInputs(this);
+      this.context.setRefOnCustomInputs && this.context.setRefOnCustomInputs(this);
       this.inputComponentDidMount && this.inputComponentDidMount();
     };
 
     this.componentWillUnmount = () => {
-      this.context.removeRefFromCustomInputs(this);
+      this.context.removeRefFromCustomInputs && this.context.removeRefFromCustomInputs(this);
       this.inputComponentWillUnmount && this.inputComponentWillUnmount();
     };
   }
