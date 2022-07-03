@@ -42,6 +42,9 @@
   border: 1px solid #e42346 !important;
   background: #f075750d;
 }
+.error-color {
+  color:  #e42346;
+}
 
 .error-border-tiny {
   .tox-edit-area__iframe {
@@ -89,4 +92,42 @@
 }
 .aic {
   align-items: center;
+}
+.d-inline-block{
+  display: inline-block;
+}
+
+.chip {
+  display: inline-block;
+  padding: 8px;
+  font-size: 14px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  p {
+      margin: 0;
+      vertical-align: middle;
+      white-space: nowrap;
+  }
+  .chip-close {
+      margin-left: 5px;
+      vertical-align: middle;
+  }
+
+  @media (min-width: 1400px) {
+    font-size: 18px;
+  }
+}
+
+.chip.active {
+  background-color: #4f97ff;
+  & > * {
+      color: #fff;
+  }
+  .chip-close {
+      & > * {
+          color: #fff;
+      }
+  }
 }

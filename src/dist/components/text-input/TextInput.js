@@ -230,16 +230,19 @@ class TextInput extends _BaseInput.BaseInput {
           paddingLeft: this.props.chips ? Math.min(3, this.props.chips) * 145 : ''
         }
       }), this.state.fetching && /*#__PURE__*/_react.default.createElement("div", {
-        className: "input-search"
+        className: "input-icon"
       }, /*#__PURE__*/_react.default.createElement(_vsc.VscLoading, {
         className: "rotate"
-      })), this.props.applyIcon && /*#__PURE__*/_react.default.createElement("div", {
-        className: "input-search apply-icon",
+      })), this.props.onApply && /*#__PURE__*/_react.default.createElement("div", {
+        className: "input-icon input-icon-btn apply-icon",
         onClick: () => this.props.onApply && this.props.onApply()
-      }, /*#__PURE__*/_react.default.createElement(_vsc.VscChevronRight, null)), this.props.closeIcon && /*#__PURE__*/_react.default.createElement("div", {
-        className: "input-search cross-icon",
+      }, /*#__PURE__*/_react.default.createElement(_vsc.VscChevronRight, null)), this.props.onClose && /*#__PURE__*/_react.default.createElement("div", {
+        className: "input-icon input-icon-btn cross-icon",
         onClick: () => this.props.onClose && this.props.onClose()
-      }, /*#__PURE__*/_react.default.createElement(_vsc.VscClose, null)));
+      }, /*#__PURE__*/_react.default.createElement(_vsc.VscClose, null)), this.props.onClickAdd && /*#__PURE__*/_react.default.createElement("div", {
+        className: "input-icon input-icon-btn add-icon",
+        onClick: () => this.props.onClickAdd && this.props.onClickAdd()
+      }, /*#__PURE__*/_react.default.createElement(_vsc.VscAdd, null)));
     });
 
     this.state = {
@@ -257,10 +260,6 @@ class TextInput extends _BaseInput.BaseInput {
       uniqueError: false
     };
     this.onInputChange = (0, _lodash.debounce)(this.onInputChange, this.props.debounce || 1000);
-  }
-
-  componentDidMount() {
-    console.log('text input mount');
   }
 
   componentDidUpdate(props) {

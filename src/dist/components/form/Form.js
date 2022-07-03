@@ -90,9 +90,7 @@ class Form extends _react.Component {
   }
 
   setRefOnCustomInputs(child) {
-    console.log('child', child);
-
-    if (child.props.formId && child.props.formId !== this.state.formId) {
+    if (child.props.noForm || child.props.formId && child.props.formId !== this.state.formId) {
       return;
     }
 
@@ -108,7 +106,6 @@ class Form extends _react.Component {
     this.inputs.push({
       ref: "child".concat(currentRefCount)
     });
-    console.log(this.currentRefCount, this.inputs);
   }
 
   render() {

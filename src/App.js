@@ -1,14 +1,16 @@
 import './App.scss';
-import CommonForm from './components/CommonForm';
-import {Form, TextInput, Dropdown, Radio, Toggle, SubmitButton} from 'react-form-latest';
-// import { 
-//   Form, 
-//   TextInput, 
-//   Dropdown, 
-//   Toggle, 
-//   Radio, 
-//   SubmitButton  
-// } from "./dist/index";
+// import {Form, TextInput, Dropdown, Radio, Toggle, SubmitButton} from 'react-form-latest';
+import { 
+  Form, 
+  TextInput, 
+  Dropdown, 
+  Toggle, 
+  Radio, 
+  StarsInput,
+  Chips,
+  Tags,
+  SubmitButton  
+} from "./dist/index";
 
 // import Form from './lib/components/form/Form';
 // import TextInput from './lib/components/text-input/TextInput';
@@ -16,6 +18,9 @@ import {Form, TextInput, Dropdown, Radio, Toggle, SubmitButton} from 'react-form
 // import SubmitButton from './lib/components/submit-button/SubmitButton';
 // import Radio from './lib/components/radio/Radio';
 // import Toggle from './lib/components/toggle/Toggle';
+// import StarsInput from './lib/components/stars-input/StarsInput';
+// import Chips from './lib/components/chips/Chips';
+// import Tags from './lib/components/tags/Tags';
 
 function App() {
   return (
@@ -87,8 +92,45 @@ function App() {
         required
       />
 
+      <StarsInput
+        field='stars'
+        required 
+      />
 
-      <CommonForm />
+      <Chips
+        field='category'
+        chips={[
+          {label: 'Category1', value: 'category1'},
+          {label: 'Category2', value: 'category2'},
+          {label: 'Category3', value: 'category3'},
+          {label: 'Category4', value: 'category4'},
+        ]}
+        value='category2'
+        required
+      />
+      
+      <Chips
+        field='categories'
+        multi
+        chips={[
+          {label: 'Category1', value: 'category1'},
+          {label: 'Category2', value: 'category2'},
+          {label: 'Category3', value: 'category3'},
+          {label: 'Category4', value: 'category4'},
+        ]}
+        value={['category2', 'category3']}
+        required
+      />
+
+      <Tags
+        field='tags'
+        chips={[
+          {label: 'Category1', value: 'category1'},
+          {label: 'Category2', value: 'category2'},
+          {label: 'Category3', value: 'category3'},
+          {label: 'Category4', value: 'category4'},
+        ]}
+      />
 
       <SubmitButton>Submit</SubmitButton>
     </Form>

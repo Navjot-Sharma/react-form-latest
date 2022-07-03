@@ -37,8 +37,7 @@ export default class Form extends Component {
   }
 
   setRefOnCustomInputs(child) {
-    console.log('child', child);
-    if (child.props.formId && child.props.formId !== this.state.formId) {
+    if (child.props.noForm || (child.props.formId && child.props.formId !== this.state.formId)) {
       return;
     }
 
@@ -56,8 +55,6 @@ export default class Form extends Component {
     this.inputs.push({
       ref: `child${currentRefCount}`,
     });
-
-    console.log(this.currentRefCount, this.inputs);
   }
 
   onFormSubmit = () => {

@@ -11,7 +11,7 @@ export default class Toggle extends BaseInput {
     super(props);
 
     this.state = {
-      checked: this.props.checked,
+      checked: this.props.checked ?? false,
       overflow: this.props.overflow,
       type: props.type ?? 'toggle', // toggle || check
       id: props.id ?? 'rfl-toggle-' + random(99, 9999999),

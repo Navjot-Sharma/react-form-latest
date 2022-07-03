@@ -23,7 +23,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 class Toggle extends _BaseInput.BaseInput {
   constructor(props) {
-    var _this, _props$type, _props$id;
+    var _this, _this$props$checked, _props$type, _props$id;
 
     super(props);
     _this = this;
@@ -62,7 +62,7 @@ class Toggle extends _BaseInput.BaseInput {
     });
 
     this.state = {
-      checked: this.props.checked,
+      checked: (_this$props$checked = this.props.checked) !== null && _this$props$checked !== void 0 ? _this$props$checked : false,
       overflow: this.props.overflow,
       type: (_props$type = props.type) !== null && _props$type !== void 0 ? _props$type : 'toggle',
       // toggle || check

@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { debounce } from 'lodash';
 import React from "react";
-import { VscChevronRight, VscClose, VscEye, VscEyeClosed, VscLoading } from "react-icons/vsc";
+import { VscAdd, VscChevronRight, VscClose, VscEye, VscEyeClosed, VscLoading } from "react-icons/vsc";
 import { copy, empty } from "../../services/Helper";
 import "./TextInput.scss";
 import { BaseInput } from "../base-input/BaseInput";
@@ -31,10 +31,6 @@ class TextInput extends BaseInput {
     };
 
     this.onInputChange = debounce(this.onInputChange, this.props.debounce || 1000);
-  }
-
-  componentDidMount() {
-    console.log('text input mount');
   }
 
   componentDidUpdate(props) {
@@ -257,9 +253,10 @@ class TextInput extends BaseInput {
           disabled={this.props.disabled}
           style={{paddingLeft: this.props.chips ? Math.min(3, this.props.chips) * 145 : ''}}
         />
-        {this.state.fetching && <div className='input-search'><VscLoading className='rotate' /></div>}
-        {this.props.applyIcon && <div className='input-search apply-icon' onClick={() => this.props.onApply && this.props.onApply()}><VscChevronRight /></div>}
-        {this.props.closeIcon && <div className='input-search cross-icon' onClick={() => this.props.onClose && this.props.onClose()}><VscClose /></div>}
+        {this.state.fetching && <div className='input-icon'><VscLoading className='rotate' /></div>}
+        {this.props.onApply && <div className='input-icon input-icon-btn apply-icon' onClick={() => this.props.onApply && this.props.onApply()}><VscChevronRight /></div>}
+        {this.props.onClose && <div className='input-icon input-icon-btn cross-icon' onClick={() => this.props.onClose && this.props.onClose()}><VscClose /></div>}
+        {this.props.onClickAdd && <div className='input-icon input-icon-btn add-icon' onClick={() => this.props.onClickAdd && this.props.onClickAdd()}><VscAdd /></div>}
       </div>
     );
   };

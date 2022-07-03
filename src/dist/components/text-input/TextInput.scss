@@ -52,14 +52,18 @@
     // }
   }
 
-  .input-search {
+  .input-icon {
     position: absolute;
-    right: 2%;
+    right: 0%;
     display: flex;
     align-items: center;
     justify-content: center;
     top: 0;
     bottom: 0;
+  }
+
+  .input-icon-btn {
+    background-color: #4f97ff;
   }
 
   .apply-icon {
@@ -74,6 +78,15 @@
     margin: 5px;
     border-radius: 5px;
     padding: 5px;
+    cursor: pointer;
+  }
+  .add-icon {
+    color: #fff;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     cursor: pointer;
   }
 }
