@@ -1,0 +1,76 @@
+@import '../../assets/index.scss';
+
+.rfl-dropdown {
+  p {
+    margin: 0;
+    padding: 10px;
+    height: 30px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #00000045;
+    border-radius: 5px;
+    cursor: pointer;
+    // &:active {
+    //   border: 1px solid $secondaryColorDark;
+    // }
+    // &:focus {
+    //   border: 1px solid $secondaryColorDark;
+    //   + label {
+    //     font-weight: bold;
+    //     transition: all 0.5s;
+    //   }
+    // }
+  }
+
+  .active-dropdown {
+    border: 1px solid #000;
+    + label {
+      font-weight: bold;
+      transition: all 0.5s;
+    }
+  }
+
+  .options {
+    list-style: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999999999;
+    max-height: 50vh;
+    overflow-y: auto;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+
+    li {
+      cursor: pointer;
+
+      &:hover {
+        background-color: #bdbdbd45;
+      }
+    }
+  }
+
+  label {
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    text-transform: capitalize;
+    pointer-events: none;
+    position: absolute;
+    top: -15px;
+    left: 0.5rem;
+    transform: translateY(50%);
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 0 0.3rem;
+    z-index: 1;
+
+    &.required-label {
+      top: -20px;
+    }
+  }
+}
