@@ -6,8 +6,6 @@ import { BaseInput } from "../base-input/BaseInput";
 
 export default class SubmitButton extends BaseInput {
 
-  static ReactFormLatestInput = 'SubmitButton';
-
   constructor(props) {
     super(props); 
 
@@ -17,10 +15,11 @@ export default class SubmitButton extends BaseInput {
 
 
   handleClick = () => {
-    if (this.props.formClicked) {
-      this.props.formClicked();
-    }
+    // if (this.props.formClicked) {
+    //   this.props.formClicked();
+    // }
 
+    this.context.onFormSubmit && this.context.onFormSubmit();
     this.props.onClick && this.props.onClick();
   };
 

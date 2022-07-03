@@ -1,6 +1,16 @@
 # React Form Latest
 
-Form libary which supports custom inputs and highly customizable
+Form libary which supports custom inputs and highly customizable.
+
+Even if input fields are in child components top level Form will still include them.
+
+### OUTPUT
+
+```javascript
+npm i react-form-latest
+```
+
+### Usage
 
 ```javascript
 import './App.scss';

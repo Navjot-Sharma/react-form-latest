@@ -1,13 +1,14 @@
 import './App.scss';
-// import {Form, TextInput, Dropdown, SubmitButton} from 'react-form-latest';
-import { 
-  Form, 
-  TextInput, 
-  Dropdown, 
-  Toggle, 
-  Radio, 
-  SubmitButton  
-} from "./dist/index";
+import CommonForm from './components/CommonForm';
+import {Form, TextInput, Dropdown, Radio, Toggle, SubmitButton} from 'react-form-latest';
+// import { 
+//   Form, 
+//   TextInput, 
+//   Dropdown, 
+//   Toggle, 
+//   Radio, 
+//   SubmitButton  
+// } from "./dist/index";
 
 // import Form from './lib/components/form/Form';
 // import TextInput from './lib/components/text-input/TextInput';
@@ -23,7 +24,8 @@ function App() {
       className='p-20'
       onValue={value => console.log(value)}
     >
-      <TextInput 
+
+     <TextInput 
         field='name'
         label='Name'
         minLength={3}
@@ -60,7 +62,7 @@ function App() {
       <div className='d-flex aic'>
         <p>Marital Status: </p>
         <div className='d-flex aic'>
-          <Radio 
+          <Radio
             field='maritalStatus'
             name='MaritalStatus'
             buttons={[
@@ -69,7 +71,6 @@ function App() {
               {label: 'Other', id: 'other'},
             ]}
             className='mx-10'
-            // value='unmarried'
             required
           />
         </div>
@@ -85,6 +86,9 @@ function App() {
         type='check'
         required
       />
+
+
+      <CommonForm />
 
       <SubmitButton>Submit</SubmitButton>
     </Form>

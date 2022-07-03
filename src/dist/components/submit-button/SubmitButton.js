@@ -22,10 +22,10 @@ class SubmitButton extends _BaseInput.BaseInput {
     super(props);
 
     _defineProperty(this, "handleClick", () => {
-      if (this.props.formClicked) {
-        this.props.formClicked();
-      }
-
+      // if (this.props.formClicked) {
+      //   this.props.formClicked();
+      // }
+      this.context.onFormSubmit && this.context.onFormSubmit();
       this.props.onClick && this.props.onClick();
     });
 
@@ -45,5 +45,3 @@ class SubmitButton extends _BaseInput.BaseInput {
 }
 
 exports.default = SubmitButton;
-
-_defineProperty(SubmitButton, "ReactFormLatestInput", 'SubmitButton');

@@ -3,11 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = exports.FormContext = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
 var _Helper = require("../../services/Helper");
+
+var _lodash = require("lodash");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -15,9 +17,16 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-// pass onValue prop to get value by clicking on appsubmitbutton
+const FormContext = /*#__PURE__*/_react.default.createContext({}); // pass onValue prop to get value by clicking on appsubmitbutton
+
+
+exports.FormContext = FormContext;
+
 class Form extends _react.Component {
+  // static contextType = FormContext;
   constructor(props) {
+    var _props$formId;
+
     super(props);
 
     _defineProperty(this, "inputRefs", {});
@@ -59,7 +68,9 @@ class Form extends _react.Component {
       return this.inputRefs[input.ref].getValue();
     });
 
-    this.state = {};
+    this.state = {
+      formId: (_props$formId = props.formId) !== null && _props$formId !== void 0 ? _props$formId : 'rfl-form-' + (0, _lodash.random)(99, 9999999)
+    };
   }
 
   reInit() {
@@ -68,67 +79,44 @@ class Form extends _react.Component {
     this.inputRefs = {};
   }
 
-  recursiveCloneChildren(children, isFirst) {
-    if (isFirst) {
-      // recursiveCloneChildren runs twice in development due to strict mode enabled
-      this.reInit();
+  removeRefFromCustomInputs(child) {
+    const idx = this.inputs.findIndex(input => input.ref === child.reactFormCounter && child.reactFormId === this.state.formId);
+
+    if (idx > -1) {
+      this.inputs.splice(idx, 1);
+      delete this.inputRefs[child.reactFormCounter];
+      this.currentRefCount--;
     }
-
-    return _react.default.Children.map(children, child => {
-      var _child, _child$type, _child2, _child2$type;
-
-      if (! /*#__PURE__*/_react.default.isValidElement(child)) return child;
-      let newChild = child; // handles functional components
-
-      if (typeof child.type === "function" && !((_child = child) !== null && _child !== void 0 && (_child$type = _child.type) !== null && _child$type !== void 0 && _child$type.ReactFormLatestInput) && (_child2 = child) !== null && _child2 !== void 0 && (_child2$type = _child2.type) !== null && _child2$type !== void 0 && _child2$type.renderDefault) {
-        newChild = new child.type(child.props);
-        newChild = newChild.render();
-      }
-
-      if (! /*#__PURE__*/_react.default.isValidElement(newChild)) return child;
-      child = newChild;
-      let childProps = {};
-
-      if ( /*#__PURE__*/_react.default.isValidElement(child) && child.type && child.type.ReactFormLatestInput === 'ReactFormLatestInput' && !child.props.noForm && (!child.props.formId || child.props.formId === this.props.formId)) {
-        childProps = this.setRefOnCustomInputs(child);
-      }
-
-      if (child.type.ReactFormLatestInput === 'SubmitButton') {
-        childProps.formClicked = () => this.onFormSubmit();
-      }
-
-      childProps.children = this.recursiveCloneChildren(child.props.children);
-      let el;
-
-      if (childProps.children) {
-        el = /*#__PURE__*/_react.default.cloneElement(child, childProps, childProps.children);
-      } else {
-        el = /*#__PURE__*/_react.default.cloneElement(child, childProps);
-      }
-
-      return el;
-    });
   }
 
   setRefOnCustomInputs(child) {
+    console.log('child', child);
+
+    if (child.props.formId && child.props.formId !== this.state.formId) {
+      return;
+    }
+
+    if (this.props.formId && !child.props.formId) {
+      return;
+    }
+
     this.currentRefCount++;
     let currentRefCount = this.currentRefCount;
-    let childProps = {
-      ref: r => {
-        this.inputRefs["child".concat(currentRefCount)] = r;
-      },
-      disabled: this.props.disabled || child.props.disabled
-    };
+    this.inputRefs["child".concat(currentRefCount)] = child;
+    child.reactFormCounter = "child".concat(currentRefCount);
+    child.reactFormId = this.state.formId;
     this.inputs.push({
       ref: "child".concat(currentRefCount)
     });
-    return childProps;
+    console.log(this.currentRefCount, this.inputs);
   }
 
   render() {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !this.props.className && this.recursiveCloneChildren(this.props.children, true), !!this.props.className && /*#__PURE__*/_react.default.createElement("div", {
+    return /*#__PURE__*/_react.default.createElement(FormContext.Provider, {
+      value: this
+    }, !this.props.className && this.props.children, !!this.props.className && /*#__PURE__*/_react.default.createElement("div", {
       className: this.props.className
-    }, this.recursiveCloneChildren(this.props.children, true)));
+    }, this.props.children));
   }
 
 }

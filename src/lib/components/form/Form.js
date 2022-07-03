@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { mapKeysToObject } from '../../services/Helper';
+import { random } from 'lodash';
 
+
+export const FormContext = React.createContext({});
 
 // pass onValue prop to get value by clicking on appsubmitbutton
 export default class Form extends Component {
+  // static contextType = FormContext;
 
   inputRefs = {};
   currentRefCount = 0;
@@ -12,7 +16,9 @@ export default class Form extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      formId: props.formId ?? 'rfl-form-' + random(99, 9999999),
+    };
   }
 
   reInit() {
@@ -21,70 +27,37 @@ export default class Form extends Component {
     this.inputRefs = {};
   }
 
-  recursiveCloneChildren(children, isFirst) {
-    if (isFirst) {
-      // recursiveCloneChildren runs twice in development due to strict mode enabled
-      this.reInit();
+  removeRefFromCustomInputs(child) {
+    const idx = this.inputs.findIndex(input => input.ref === child.reactFormCounter && child.reactFormId === this.state.formId);
+    if (idx > -1) {
+      this.inputs.splice(idx, 1);
+      delete this.inputRefs[child.reactFormCounter];
+      this.currentRefCount--;
     }
-
-    return React.Children.map(children, (child) => {
-      if (!React.isValidElement(child) ) return child;
-
-      let newChild = child;
-
-      // handles functional components
-      if (typeof child.type === "function" && !child?.type?.ReactFormLatestInput && child?.type?.renderDefault) {
-        newChild = new child.type(child.props);
-        newChild = newChild.render();
-      }
-  
-      if (!React.isValidElement(newChild)) return child;
-
-      child = newChild;
-
-      let childProps = {};
-
-      if (
-        React.isValidElement(child) && child.type 
-        && child.type.ReactFormLatestInput === 'ReactFormLatestInput'
-        && !child.props.noForm && (!child.props.formId || child.props.formId === this.props.formId)
-      ) {
-          childProps = this.setRefOnCustomInputs(child);
-      }
-
-      if (child.type.ReactFormLatestInput === 'SubmitButton') {
-        childProps.formClicked = () => this.onFormSubmit();
-      }
-      
-      childProps.children = this.recursiveCloneChildren(child.props.children);
-
-      let el;
-      if (childProps.children) {
-        el = React.cloneElement(child, childProps, childProps.children);
-      } else {
-        el = React.cloneElement(child, childProps);
-      }
-     
-      return el;
-    });
   }
 
   setRefOnCustomInputs(child) {
+    console.log('child', child);
+    if (child.props.formId && child.props.formId !== this.state.formId) {
+      return;
+    }
+
+    if (this.props.formId && !child.props.formId) {
+      return;
+    }
+
     this.currentRefCount++;
     let currentRefCount = this.currentRefCount;
 
-    let childProps = {
-      ref: r =>  {
-        this.inputRefs[`child${currentRefCount}`] = r;
-      },
-      disabled: this.props.disabled || child.props.disabled
-    };
+    this.inputRefs[`child${currentRefCount}`] = child;
+    child.reactFormCounter = `child${currentRefCount}`;
+    child.reactFormId = this.state.formId;
 
     this.inputs.push({
       ref: `child${currentRefCount}`,
     });
 
-    return childProps;
+    console.log(this.currentRefCount, this.inputs);
   }
 
   onFormSubmit = () => {
@@ -123,13 +96,13 @@ export default class Form extends Component {
   }
 
   render() {
-    return <>
-      {!this.props.className && this.recursiveCloneChildren(this.props.children, true)}
+    return <FormContext.Provider value={this}>
+      {!this.props.className && this.props.children}
       {!!this.props.className && 
         <div className={this.props.className}>
-         {this.recursiveCloneChildren(this.props.children, true)}
+         {this.props.children}
         </div>
       }
-    </>;
+    </FormContext.Provider>;
   }
 }

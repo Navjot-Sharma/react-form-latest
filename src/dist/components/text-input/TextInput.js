@@ -259,6 +259,10 @@ class TextInput extends _BaseInput.BaseInput {
     this.onInputChange = (0, _lodash.debounce)(this.onInputChange, this.props.debounce || 1000);
   }
 
+  componentDidMount() {
+    console.log('text input mount');
+  }
+
   componentDidUpdate(props) {
     if (this.props.reInitCount && this.props.reInitCount !== props.reInitCount) {
       this.onGetValue();
